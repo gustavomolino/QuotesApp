@@ -32,8 +32,20 @@ export class QuotesListPage {
     )
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotesListPage');
+  searchQuotes(event){
+    if(event.target.value.length > 2){
+      let filteredJson = this.quotesList.filter( function (row) {
+        if(row.author.indexOf(event.target.value) != -1 ){
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      this.isFiltered = true;
+      this.filteredQuotes = filteredJson;
+
+    }
   }
 
 }
